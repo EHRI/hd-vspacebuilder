@@ -15,12 +15,13 @@ public class App
     public static void main( String[] args ) throws IOException, TreeTaggerException
     {
     	
-    	String folderName = args[0];
+    	String descriptionsFolder = args[0];
+    	String targetFolder = args[1];
 
     	//Load collection and file descriptions
     	LoadFiles upload = new LoadFiles();
 		HashMap<String, List<String>> uploaded = upload
-				.loadFiles4Model(folderName);
+				.loadFiles4Model(descriptionsFolder);
 		
 		//Tokenize the texts
 		TokenizeLearnMaterial tokenizeMaterial = new TokenizeLearnMaterial();
@@ -41,7 +42,7 @@ public class App
 		//Build vectorial representation of each institution with TF*IDF
 		RankTfIdf rankFeats = new RankTfIdf();
 		HashMap<String, HashMap<String, Double>> tfidf = rankFeats
-				.rankingTfIdf(extracted);
+				.rankingTfIdf(extracted, targetFolder);
 		
 		//END
         System.out.println( "FINISH!" );
