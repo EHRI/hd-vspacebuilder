@@ -18,11 +18,11 @@ public class RankTfIdf {
 	// in several methods implemented in different classes.
 
 	static GetProperties property = new GetProperties();
-	final static String modelFolder = property.getModelFolder();
+//	final static String modelFolder = property.getModelFolder();
 	final File featuresFile = new File("features.txt");
 	
 	public HashMap<String, HashMap<String, Double>> rankingTfIdf(
-			HashMap<String, List<String>> extractedFeats) {
+			HashMap<String, List<String>> extractedFeats, String targetFolder) throws IOException {
 		System.out.println();
 		System.out.println("Begin ranking of features");
 		
@@ -31,7 +31,7 @@ public class RankTfIdf {
 		String currentLine;
 		BufferedReader br = null;
 		try {
-			br = new BufferedReader(new FileReader(modelFolder
+			br = new BufferedReader(new FileReader(targetFolder
 					+ featuresFile));
 			while ((currentLine = br.readLine()) != null) {
 				featuresList.add(currentLine);
@@ -40,8 +40,10 @@ public class RankTfIdf {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
+			br.close();
 		}
-
+		
+		
 		// Compute feature occurrences
 		// and length of each document
 		HashMap<String, HashMap<String, Integer>> featureOccurrence = new HashMap<String, HashMap<String, Integer>>();
@@ -133,7 +135,7 @@ public class RankTfIdf {
 		for (String key : tfidfs.keySet()) {
 			String filename = key + ".tfidf";
 			try {
-				FileWriter fstream = new FileWriter(modelFolder + filename);
+				FileWriter fstream = new FileWriter(targetFolder + filename);
 				BufferedWriter out = new BufferedWriter(fstream);
 
 				for (String feat : tfidfs.get(key).keySet()){
