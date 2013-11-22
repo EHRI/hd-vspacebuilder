@@ -6,6 +6,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -13,33 +16,37 @@ import java.util.List;
 
 public class ExtractRelevantFeatures {
 
-	static GetProperties property = new GetProperties();
-	final static String modelFolder = property.getModelFolder();
-	//final static File descriptions = new File(modelFolder);
+	//static GetProperties property = new GetProperties();
 
+	
+	
 	public HashMap<String, List<String>> extractFeatures(
-			HashMap<String, List<String>> tagged) throws IOException {
+			HashMap<String, List<String>> tagged, String outputfolder) throws IOException {
 		System.out.println();
 		System.out.println("EXTRACT RELEVANT FEATURES");
+		
+		InputStream inputStreamStopWords = getClass().getResourceAsStream("/genericStopWords.list");
+		
 		BufferedReader br = null;
 		String currentLine;
 		List<String> stopWordsList = new ArrayList<String>();
 		try {
-			br = new BufferedReader(new FileReader(modelFolder
-					+ "genericStopWords.list"));
+		//	br = new BufferedReader(new FileReader(modelFolder
+		//			+ "genericStopWords.list"));
 
+			br = new BufferedReader(new InputStreamReader(inputStreamStopWords));
 			while ((currentLine = br.readLine()) != null) {
 				stopWordsList.add(currentLine);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				br.close();
-			} catch (IOException e) {
+			//try {
+				//br.close();
+		//	} catch (IOException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			//	e.printStackTrace();
+			//}
 		}
 //		System.out.println("SIZE STOP " + stopWordsList.size());
 
@@ -115,7 +122,7 @@ public class ExtractRelevantFeatures {
 		AuxiliaryMethods.removeDuplicates(features);
 		Collections.sort(features);
 
-		File featuresFile = new File(modelFolder + "features.txt");
+		File featuresFile = new File(outputfolder + "features.txt");
 
 		FileWriter fw = new FileWriter(featuresFile.getAbsoluteFile());
 		BufferedWriter bw = new BufferedWriter(fw);
