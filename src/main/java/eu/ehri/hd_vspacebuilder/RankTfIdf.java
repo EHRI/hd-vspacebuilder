@@ -1,6 +1,5 @@
 package eu.ehri.hd_vspacebuilder;
 
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -14,43 +13,38 @@ import java.util.List;
 
 public class RankTfIdf {
 
-	// In the next implementation it should be shorter and divided
-	// in several methods implemented in different classes.
-
 	static GetProperties property = new GetProperties();
-//	final static String modelFolder = property.getModelFolder();
-	final File featuresFile = new File("features.txt");
-	
+
 	public HashMap<String, HashMap<String, Double>> rankingTfIdf(
-			HashMap<String, List<String>> extractedFeats, String targetFolder) throws IOException {
+			HashMap<String, List<String>> extractedFeats, String targetFolder)
+			throws IOException {
+		File featuresFile = new File("features.txt");
 		System.out.println();
 		System.out.println("Begin ranking of features");
-		
+
 		// Read files features.txt and store the features in a list
 		List<String> featuresList = new ArrayList<String>();
 		String currentLine;
 		BufferedReader br = null;
 		try {
-			br = new BufferedReader(new FileReader(targetFolder
-					+ featuresFile));
+			br = new BufferedReader(new FileReader(targetFolder + featuresFile));
 			while ((currentLine = br.readLine()) != null) {
 				featuresList.add(currentLine);
-				// System.out.println(currentLine);
+
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
 			br.close();
 		}
-		
-		
+
 		// Compute feature occurrences
 		// and length of each document
 		HashMap<String, HashMap<String, Integer>> featureOccurrence = new HashMap<String, HashMap<String, Integer>>();
 		HashMap<String, Integer> lengths = new HashMap<String, Integer>();
 
 		for (String key : extractedFeats.keySet()) {
-			//System.out.println("Building representation of: " + key);
+			System.out.println("Building representation of: " + key);
 			int length = extractedFeats.get(key).size();
 			HashMap<String, Integer> featuresCount = new HashMap<String, Integer>();
 			for (int i = 0; i < extractedFeats.get(key).size(); i++) {
@@ -66,7 +60,6 @@ public class RankTfIdf {
 
 			featureOccurrence.put(key, featuresCount);
 			lengths.put(key, length);
-			//System.out.println("LENGTH OF " + key + " " + length);
 		}
 
 		// Compute Term Frequencies
@@ -77,15 +70,10 @@ public class RankTfIdf {
 			HashMap<String, Double> frequenciesDocument = new HashMap<String, Double>();
 			// extract maximal frequency of a feature. It will be used for
 			// normalization of the term frequency
-			Double max = (double) Collections.max(featureOccurrence.get(key)
-					.values());
+			Double max = (double) Collections.max(featureOccurrence.get(key).values());
 			for (String feat : featureOccurrence.get(key).keySet()) {
 				Double tfvalue = featureOccurrence.get(key).get(feat) / max;
 				frequenciesDocument.put(feat, tfvalue);
-				// System.out.println("Easy variante:\tTF\t" + feat + "\t" +
-				// "OCCUR\t" + featureOccurrence.get(key).get(feat) + "/" + max
-				// + "\t"+ tfvalue);
-				// System.out.println();
 			}
 			termFrequencies.put(key, frequenciesDocument);
 
@@ -109,7 +97,6 @@ public class RankTfIdf {
 				}
 				idf = Math.log(1 + institutions.size() / inDocs);
 				institutionIdf.put(key, idf);
-				// System.out.println(key + "\t" + idf);
 			}
 			idfs.put(institutions.get(i), institutionIdf);
 		}
@@ -126,7 +113,7 @@ public class RankTfIdf {
 				double idf = idfs.get(institutions.get(i)).get(key);
 				double tfidf = tf * idf;
 				institutionTfIdf.put(key, tfidf);
-				//System.out.println(key + "\t" + tfidf);
+				// System.out.println(key + "\t" + tfidf);
 			}
 			tfidfs.put(institutions.get(i), institutionTfIdf);
 		}
@@ -138,8 +125,8 @@ public class RankTfIdf {
 				FileWriter fstream = new FileWriter(targetFolder + filename);
 				BufferedWriter out = new BufferedWriter(fstream);
 
-				for (String feat : tfidfs.get(key).keySet()){
-					out.write(feat + "\t" +tfidfs.get(key).get(feat));
+				for (String feat : tfidfs.get(key).keySet()) {
+					out.write(feat + "\t" + tfidfs.get(key).get(feat));
 					out.newLine();
 				}
 				out.close();
