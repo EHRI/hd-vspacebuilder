@@ -37,7 +37,7 @@ public class App
 		//Infer the features of the vector space
 		ExtractRelevantFeatures extractFeats = new ExtractRelevantFeatures();
 		HashMap<String, List<String>> extracted = extractFeats
-				.extractFeatures(annotated);
+				.extractFeatures(annotated, targetFolder);
 		
 		//Build vectorial representation of each institution with TF*IDF
 		RankTfIdf rankFeats = new RankTfIdf();
