@@ -66,15 +66,7 @@ public class EnglishTokenizer {
 		tokenlist = tokenlist.replace("Concentrations camp", "KZ");
 		tokenlist = tokenlist.replace("Concentrations Camp", "KZ");
 		*/
-		
-		
-		
-		// Later in dictionary: replace in list of features
-		tokenlist = tokenlist.replace("Aliyah", "aliya");
-		tokenlist = tokenlist.replace("aliyah", "aliya");
-		tokenlist = tokenlist.replace("nationalsozialist", "nazi");
-		tokenlist = tokenlist.replace("Nationalsozialist", "nazi");
-		
+
 		List<String> tokenList = asList(tokenlist.split(" "));
 		return tokenList;
 	}
