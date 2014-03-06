@@ -60,39 +60,38 @@ public class ExtractRelevantFeatures {
 							|| splitted[1].matches("NP.*")|| splitted[1].equals("JJ")
 							|| splitted[1].matches("VV.*")) {
 						if (splitted[2].equals("<unknown>")) {
-							// if (splitted[0].matches("[a-z]+")
-							// || splitted[0].matches("[a-z]+-[a-z]+")) {
 							if (!stopWordsList.contains(splitted[0]) && (splitted[0].length()>2)) {
+								ClusterSynonyms clusterSyns = new ClusterSynonyms();
+								String feature = clusterSyns.substituteSynonym(splitted[0].toLowerCase());
 								if (key.equals("niod")) {
-									niod_feats.add(splitted[0].toLowerCase());
+									niod_feats.add(feature);
 								}
 								if (key.equals("wiener")) {
-									wl_feats.add(splitted[0].toLowerCase());
+									wl_feats.add(feature);
 								}
 								if (key.equals("yadvashem")) {
-									yv_feats.add(splitted[0].toLowerCase());
+									yv_feats.add(feature);
 								}
 								if (key.equals("jewishmuseumprag")) {
-									jmp_feats.add(splitted[0].toLowerCase());
+									jmp_feats.add(feature);
 								}
 							}
 							// }
 						} else {
-
-							// if (splitted[2].matches("[a-z]+")
-							// || splitted[2].matches("[a-z]+-[a-z]+")) {
 							if (!stopWordsList.contains(splitted[2])&& (splitted[0].length()>2)) {
+								ClusterSynonyms clusterSyns = new ClusterSynonyms();
+								String feature = clusterSyns.substituteSynonym(splitted[2].toLowerCase());
 								if (key.equals("niod")) {
-									niod_feats.add(splitted[2].toLowerCase());
+									niod_feats.add(feature);
 								}
 								if (key.equals("wiener")) {
-									wl_feats.add(splitted[2].toLowerCase());
+									wl_feats.add(feature);
 								}
 								if (key.equals("yadvashem")) {
-									yv_feats.add(splitted[2].toLowerCase());
+									yv_feats.add(feature);
 								}
 								if (key.equals("jewishmuseumprag")) {
-									jmp_feats.add(splitted[2].toLowerCase());
+									jmp_feats.add(feature);
 								}
 							}
 						}
