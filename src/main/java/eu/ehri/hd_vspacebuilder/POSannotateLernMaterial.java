@@ -23,26 +23,23 @@ public class POSannotateLernMaterial {
 
 		for (String key : tokens.keySet()) {
 			System.out.println("ANNOTATING " + key);
-		//	for (int i = 0; i < tokens.get(key).size(); i++) {
-				List<String> annotation = new ArrayList<String>();
-				PartOfSpeechTagging annotate = new PartOfSpeechTagging();
-				annotation = annotate.annotatePOSpeech(tokens.get(
-						key));
-				//
-				if (key.equals("niod")) {
-					niod_pos.addAll(annotation);
-				}
-				if (key.equals("wiener")) {
-					wl_pos.addAll(annotation);
-				}
-				if (key.equals("yadvashem")) {
-					yv_pos.addAll(annotation);
-				}
-				if (key.equals("jewishmuseumprag")) {
-					jmp_pos.addAll(annotation);
-				}
+			List<String> annotation = new ArrayList<String>();
+			PartOfSpeechTagging annotate = new PartOfSpeechTagging();
+			annotation = annotate.annotatePOSpeech(tokens.get(key));
+			//
+			if (key.equals("niod")) {
+				niod_pos.addAll(annotation);
 			}
-	//	}
+			if (key.equals("wiener")) {
+				wl_pos.addAll(annotation);
+			}
+			if (key.equals("yadvashem")) {
+				yv_pos.addAll(annotation);
+			}
+			if (key.equals("jewishmuseumprag")) {
+				jmp_pos.addAll(annotation);
+			}
+		}
 
 		System.out.println("POS NIOD SIZE " + niod_pos.size());
 		System.out.println("POS WL SIZE " + wl_pos.size());
@@ -52,7 +49,7 @@ public class POSannotateLernMaterial {
 		annotated.put("wiener", wl_pos);
 		annotated.put("yadvashem", yv_pos);
 		annotated.put("jewishmuseumprag", jmp_pos);
-		
+
 		return annotated;
 
 	}
