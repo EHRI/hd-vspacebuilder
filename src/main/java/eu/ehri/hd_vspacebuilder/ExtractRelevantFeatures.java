@@ -31,8 +31,6 @@ public class ExtractRelevantFeatures {
 		String currentLine;
 		List<String> stopWordsList = new ArrayList<String>();
 		try {
-		//	br = new BufferedReader(new FileReader(modelFolder
-		//			+ "genericStopWords.list"));
 
 			br = new BufferedReader(new InputStreamReader(inputStreamStopWords));
 			while ((currentLine = br.readLine()) != null) {
@@ -41,12 +39,7 @@ public class ExtractRelevantFeatures {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
-			//try {
-				//br.close();
-		//	} catch (IOException e) {
-				// TODO Auto-generated catch block
-			//	e.printStackTrace();
-			//}
+
 		}
 //		System.out.println("SIZE STOP " + stopWordsList.size());
 
