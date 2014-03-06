@@ -70,13 +70,7 @@ public class AuxiliaryMethods {
         List<Map.Entry<String, Double>> list = new LinkedList<Map.Entry<String, Double>>(map.entrySet());
 
         Collections.sort(list, new Comparator<Map.Entry<String, Double>>() {
-/*
-            public int compare(Map.Entry<String, Double> m1, Map.Entry<String, Double> m2) {
-                System.out.println(m2.getValue() + " " + m1.getValue());
-//        		(m2.getValue()).compareTo(m1.getValue());
-            	return Double.compare(m2.getValue(), m1.getValue());
-            }
-  */          
+        
             public int compare(Map.Entry<String, Double> m1, Map.Entry<String, Double> m2) {
             	int out = 0;
             	if (m2.getValue() < m1.getValue()){
