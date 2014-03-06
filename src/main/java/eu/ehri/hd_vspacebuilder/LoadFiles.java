@@ -30,7 +30,6 @@ public class LoadFiles {
 			Matcher matcherText = textFile.matcher(fileEntry.toString());
 			if (matcherText.find()) {
 				fileList.add(fileEntry.getName());
-				// System.out.println(fileEntry.getName());
 			}
 		}
 
