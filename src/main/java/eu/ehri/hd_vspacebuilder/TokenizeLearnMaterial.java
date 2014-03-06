@@ -13,8 +13,7 @@ public class TokenizeLearnMaterial {
 		System.out.println();
 		System.out.println("Begin tokenization");
 		
-		// HashMap<String, List<List<String>>> tokenLists = new HashMap<String,
-		// List<List<String>>>();
+
 		HashMap<String, List<String>> tokenLists = new HashMap<String, List<String>>();
 		
 
@@ -28,16 +27,12 @@ public class TokenizeLearnMaterial {
 		for (String key : filesContent.keySet()) {
 			System.out.println("Tokenizing texts of " + key);
 			for (int i = 0; i < filesContent.get(key).size(); i++) {
-			//	System.out.println("\t\tkey\tSize is " + filesContent.get(key).get(i).length());
 				List<String> tokensFile = new ArrayList<String>();
-				// for (int idx = 0; idx < filesContent.get(key).get(i).size();
-				// idx++) {
 				List<String> tokensLine = tokenizeInput.tokenize(filesContent
 						.get(key).get(i));
-				// .tokenize(filesContent.get(key).get(i).get(idx));
 
 				tokensFile.addAll(tokensLine);
-				// }
+				
 				if (key.equals("niod")) {
 					niod_tokens.addAll(tokensFile);
 				}
