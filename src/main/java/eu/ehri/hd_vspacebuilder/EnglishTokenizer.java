@@ -46,6 +46,7 @@ public class EnglishTokenizer {
 		// System.out.println(tokenlist);
 
 		// for problems in pre-processing
+		tokenlist = tokenlist.replace("\"", " ");
 		tokenlist = tokenlist.replace("national sozialist", "nazi");
 		tokenlist = tokenlist.replace("National Sozialist", "Nazi");
 		tokenlist = tokenlist.replace("National sozialist", "Nazi");

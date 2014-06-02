@@ -3,12 +3,10 @@ package eu.ehri.hd_vspacebuilder;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -50,6 +48,8 @@ public class ExtractRelevantFeatures {
 		List<String> wl_feats = new ArrayList<String>();
 		List<String> yv_feats = new ArrayList<String>();
 		List<String> jmp_feats = new ArrayList<String>();
+		List<String> ba_feats = new ArrayList<String>();
+		List<String> ushmm_feats = new ArrayList<String>();
 
 		for (String key : tagged.keySet()) {
 			 System.out.println("Extracting features from "+ key);
@@ -60,7 +60,7 @@ public class ExtractRelevantFeatures {
 							|| splitted[1].matches("NP.*")|| splitted[1].equals("JJ")
 							|| splitted[1].matches("VV.*")) {
 						if (splitted[2].equals("<unknown>")) {
-							if (!stopWordsList.contains(splitted[0]) && (splitted[0].length()>2)) {
+							if (!stopWordsList.contains(splitted[0]) && (splitted[0].length()>2) && !(splitted[0].equals("\n"))) {
 								ClusterSynonyms clusterSyns = new ClusterSynonyms();
 								String feature = clusterSyns.substituteSynonym(splitted[0].toLowerCase());
 								if (key.equals("niod")) {
@@ -75,10 +75,16 @@ public class ExtractRelevantFeatures {
 								if (key.equals("jewishmuseumprag")) {
 									jmp_feats.add(feature);
 								}
+								if (key.equals("bundesarchiv")) {
+									ba_feats.add(feature);
+								}
+								if (key.equals("ushmm")) {
+									ushmm_feats.add(feature);
+								}
 							}
 							// }
 						} else {
-							if (!stopWordsList.contains(splitted[2])&& (splitted[0].length()>2)) {
+							if (!stopWordsList.contains(splitted[2])&& (splitted[2].length()>2) && !(splitted[2].equals("\n"))) {
 								ClusterSynonyms clusterSyns = new ClusterSynonyms();
 								String feature = clusterSyns.substituteSynonym(splitted[2].toLowerCase());
 								if (key.equals("niod")) {
@@ -93,6 +99,12 @@ public class ExtractRelevantFeatures {
 								if (key.equals("jewishmuseumprag")) {
 									jmp_feats.add(feature);
 								}
+								if (key.equals("bundesarchiv")) {
+									ba_feats.add(feature);
+								}
+								if (key.equals("ushmm")) {
+									ushmm_feats.add(feature);
+								}								
 							}
 						}
 					}
@@ -104,11 +116,15 @@ public class ExtractRelevantFeatures {
 		selected.put("wiener", wl_feats);
 		selected.put("yadvashem", yv_feats);
 		selected.put("jewishmuseumprag", jmp_feats);
+		selected.put("bundesarchiv", ba_feats);
+		selected.put("ushmm", ushmm_feats);
 		
 		features.addAll(niod_feats);
 		features.addAll(wl_feats);
 		features.addAll(yv_feats);
 		features.addAll(jmp_feats);
+		features.addAll(ba_feats);
+		features.addAll(ushmm_feats);
 		
 	//	System.out.println("Features size begin " + features.size());
 		AuxiliaryMethods.removeDuplicates(features);

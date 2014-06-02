@@ -13,7 +13,7 @@ import java.util.List;
 
 public class RankTfIdf {
 
-	static GetProperties property = new GetProperties();
+	//static GetProperties property = new GetProperties();
 
 	public HashMap<String, HashMap<String, Double>> rankingTfIdf(
 			HashMap<String, List<String>> extractedFeats, String targetFolder)
@@ -29,8 +29,9 @@ public class RankTfIdf {
 		try {
 			br = new BufferedReader(new FileReader(targetFolder + featuresFile));
 			while ((currentLine = br.readLine()) != null) {
+				if (currentLine.length() > 2){
 				featuresList.add(currentLine);
-
+				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -95,7 +96,7 @@ public class RankTfIdf {
 						inDocs++;
 					}
 				}
-				idf = Math.log(1 + institutions.size() / inDocs);
+				idf = Math.log(1 + (institutions.size() / inDocs));
 				institutionIdf.put(key, idf);
 			}
 			idfs.put(institutions.get(i), institutionIdf);
