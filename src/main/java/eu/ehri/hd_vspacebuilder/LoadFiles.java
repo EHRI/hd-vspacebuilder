@@ -23,7 +23,8 @@ public class LoadFiles {
 		List<String> jmp_lines = new ArrayList<String>();
 		List<String> ushmm_lines = new ArrayList<String>();
 		List<String> bundesarchiv_lines = new ArrayList<String>();
-
+		List<String> its_lines = new ArrayList<String>();
+		
 		Pattern textFile = Pattern.compile(".*txt");
 		List<String> fileList = new ArrayList<String>();
 		HashMap<String, List<String>> filesContent = new HashMap<String, List<String>>();
@@ -76,6 +77,9 @@ public class LoadFiles {
 			if (fileList.get(i).matches("ushmm_.*")) {
 				ushmm_lines.addAll(linesOfFile);
 			}
+			if (fileList.get(i).matches("its_.*")) {
+				its_lines.addAll(linesOfFile);
+			}
 
 		}
 
@@ -85,6 +89,7 @@ public class LoadFiles {
 		filesContent.put("jewishmuseumprag", jmp_lines);
 		filesContent.put("bundesarchiv", bundesarchiv_lines);
 		filesContent.put("ushmm", ushmm_lines);
+		filesContent.put("its", its_lines);
 		
 		System.out.println("NIOD lines: " + niod_lines.size());
 		System.out.println("WL lines: " + wl_lines.size());
@@ -92,9 +97,8 @@ public class LoadFiles {
 		System.out.println("JMP lines: "  + jmp_lines.size());
 		System.out.println("BA lines: "  + bundesarchiv_lines.size());
 		System.out.println("USHMM lines: "  + ushmm_lines.size());
-		
-		//System.out.println("TOTAL lines"
-		//		+ (niod_lines.size() + wl_lines.size() + yv_lines.size()));
+		System.out.println("ITS lines: "  + its_lines.size());
+
 
 		return filesContent;
 	}

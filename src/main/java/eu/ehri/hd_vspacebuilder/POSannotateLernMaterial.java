@@ -22,6 +22,7 @@ public class POSannotateLernMaterial {
 		List<String> jmp_pos = new ArrayList<String>();
 		List<String> ba_pos = new ArrayList<String>();
 		List<String> ushmm_pos = new ArrayList<String>();
+		List<String> its_pos = new ArrayList<String>();
 
 		for (String key : tokens.keySet()) {
 			System.out.println("ANNOTATING " + key);
@@ -47,6 +48,9 @@ public class POSannotateLernMaterial {
 			if (key.equals("ushmm")) {
 				ushmm_pos.addAll(annotation);
 			}
+			if (key.equals("its")) {
+				its_pos.addAll(annotation);
+			}
 		}
 
 		System.out.println("POS NIOD SIZE " + niod_pos.size());
@@ -55,12 +59,14 @@ public class POSannotateLernMaterial {
 		System.out.println("POS JMP SIZE " + jmp_pos.size());
 		System.out.println("POS BA SIZE " + ba_pos.size());
 		System.out.println("POS USHMM SIZE " + ushmm_pos.size());
+		System.out.println("POS ITS SIZE " + its_pos.size());
 		annotated.put("niod", niod_pos);
 		annotated.put("wiener", wl_pos);
 		annotated.put("yadvashem", yv_pos);
 		annotated.put("jewishmuseumprag", jmp_pos);
 		annotated.put("bundesarchiv", ba_pos);
 		annotated.put("ushmm", ushmm_pos);
+		annotated.put("its", its_pos);
 		
 		return annotated;
 

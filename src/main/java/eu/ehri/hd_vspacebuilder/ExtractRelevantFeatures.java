@@ -50,6 +50,7 @@ public class ExtractRelevantFeatures {
 		List<String> jmp_feats = new ArrayList<String>();
 		List<String> ba_feats = new ArrayList<String>();
 		List<String> ushmm_feats = new ArrayList<String>();
+		List<String> its_feats = new ArrayList<String>();
 
 		for (String key : tagged.keySet()) {
 			 System.out.println("Extracting features from "+ key);
@@ -81,6 +82,9 @@ public class ExtractRelevantFeatures {
 								if (key.equals("ushmm")) {
 									ushmm_feats.add(feature);
 								}
+								if (key.equals("its")) {
+									its_feats.add(feature);
+								}
 							}
 							// }
 						} else {
@@ -104,7 +108,10 @@ public class ExtractRelevantFeatures {
 								}
 								if (key.equals("ushmm")) {
 									ushmm_feats.add(feature);
-								}								
+								}
+								if (key.equals("its")) {
+									its_feats.add(feature);
+								}
 							}
 						}
 					}
@@ -118,6 +125,7 @@ public class ExtractRelevantFeatures {
 		selected.put("jewishmuseumprag", jmp_feats);
 		selected.put("bundesarchiv", ba_feats);
 		selected.put("ushmm", ushmm_feats);
+		selected.put("its", its_feats);
 		
 		features.addAll(niod_feats);
 		features.addAll(wl_feats);
@@ -125,6 +133,7 @@ public class ExtractRelevantFeatures {
 		features.addAll(jmp_feats);
 		features.addAll(ba_feats);
 		features.addAll(ushmm_feats);
+		features.addAll(its_feats);
 		
 	//	System.out.println("Features size begin " + features.size());
 		AuxiliaryMethods.removeDuplicates(features);

@@ -23,6 +23,7 @@ public class TokenizeLearnMaterial {
 		List<String> jmp_tokens = new ArrayList<String>();
 		List<String> ba_tokens = new ArrayList<String>();
 		List<String> ushmm_tokens = new ArrayList<String>();
+		List<String> its_tokens = new ArrayList<String>();
 
 		EnglishTokenizer tokenizeInput = new EnglishTokenizer();
 
@@ -53,6 +54,9 @@ public class TokenizeLearnMaterial {
 				if (key.equals("ushmm")) {
 					ushmm_tokens.addAll(tokensFile);
 				}
+				if (key.equals("its")) {
+					its_tokens.addAll(tokensFile);
+				}
 			}
 		}
 
@@ -62,6 +66,7 @@ public class TokenizeLearnMaterial {
 		tokenLists.put("jewishmuseumprag", jmp_tokens);
 		tokenLists.put("bundesarchiv", ba_tokens);
 		tokenLists.put("ushmm", ushmm_tokens);
+		tokenLists.put("its", its_tokens);
 
 		System.out.println("NIOD tokens: " + niod_tokens.size());
 		System.out.println("WIENER tokens: " + wl_tokens.size());
@@ -69,6 +74,7 @@ public class TokenizeLearnMaterial {
 		System.out.println("JMP tokens: " + jmp_tokens.size());
 		System.out.println("BA tokens: " + ba_tokens.size());
 		System.out.println("USHMM tokens: " + ushmm_tokens.size());
+		System.out.println("ITS tokens: " + its_tokens.size());
 		
 		return tokenLists;
 	}
