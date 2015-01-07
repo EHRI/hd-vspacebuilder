@@ -1,6 +1,5 @@
 package eu.ehri.hd_vspacebuilder;
 
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,13 +8,11 @@ public class TokenizeLearnMaterial {
 
 	public HashMap<String, List<String>> tokenizeDescriptions(
 			HashMap<String, List<String>> filesContent) {
-		
+
 		System.out.println();
 		System.out.println("Begin tokenization");
-		
 
 		HashMap<String, List<String>> tokenLists = new HashMap<String, List<String>>();
-		
 
 		List<String> niod_tokens = new ArrayList<String>();
 		List<String> wl_tokens = new ArrayList<String>();
@@ -24,6 +21,8 @@ public class TokenizeLearnMaterial {
 		List<String> ba_tokens = new ArrayList<String>();
 		List<String> ushmm_tokens = new ArrayList<String>();
 		List<String> its_tokens = new ArrayList<String>();
+		List<String> cegesoma_tokens = new ArrayList<String>();
+		List<String> ifz_tokens = new ArrayList<String>();
 
 		EnglishTokenizer tokenizeInput = new EnglishTokenizer();
 
@@ -35,7 +34,7 @@ public class TokenizeLearnMaterial {
 						.get(key).get(i));
 
 				tokensFile.addAll(tokensLine);
-				
+
 				if (key.equals("niod")) {
 					niod_tokens.addAll(tokensFile);
 				}
@@ -57,6 +56,12 @@ public class TokenizeLearnMaterial {
 				if (key.equals("its")) {
 					its_tokens.addAll(tokensFile);
 				}
+				if (key.equals("cegesoma")) {
+					cegesoma_tokens.addAll(tokensFile);
+				}
+				if (key.equals("ifz")) {
+					ifz_tokens.addAll(tokensFile);
+				}
 			}
 		}
 
@@ -67,6 +72,8 @@ public class TokenizeLearnMaterial {
 		tokenLists.put("bundesarchiv", ba_tokens);
 		tokenLists.put("ushmm", ushmm_tokens);
 		tokenLists.put("its", its_tokens);
+		tokenLists.put("cegesoma", cegesoma_tokens);
+		tokenLists.put("ifz", ifz_tokens);
 
 		System.out.println("NIOD tokens: " + niod_tokens.size());
 		System.out.println("WIENER tokens: " + wl_tokens.size());
@@ -75,8 +82,9 @@ public class TokenizeLearnMaterial {
 		System.out.println("BA tokens: " + ba_tokens.size());
 		System.out.println("USHMM tokens: " + ushmm_tokens.size());
 		System.out.println("ITS tokens: " + its_tokens.size());
-		
+		System.out.println("CEGESOMA tokens: " + cegesoma_tokens.size());
+		System.out.println("IfZ tokens: " + ifz_tokens.size());
+
 		return tokenLists;
 	}
-	}
-
+}

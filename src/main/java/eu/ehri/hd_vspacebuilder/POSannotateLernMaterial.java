@@ -23,6 +23,8 @@ public class POSannotateLernMaterial {
 		List<String> ba_pos = new ArrayList<String>();
 		List<String> ushmm_pos = new ArrayList<String>();
 		List<String> its_pos = new ArrayList<String>();
+		List<String> cegesoma_pos = new ArrayList<String>();
+		List<String> ifz_pos = new ArrayList<String>();
 
 		for (String key : tokens.keySet()) {
 			System.out.println("ANNOTATING " + key);
@@ -51,6 +53,12 @@ public class POSannotateLernMaterial {
 			if (key.equals("its")) {
 				its_pos.addAll(annotation);
 			}
+			if (key.equals("cegesoma")) {
+				cegesoma_pos.addAll(annotation);
+			}
+			if (key.equals("ifz")) {
+				ifz_pos.addAll(annotation);
+			}
 		}
 
 		System.out.println("POS NIOD SIZE " + niod_pos.size());
@@ -60,6 +68,8 @@ public class POSannotateLernMaterial {
 		System.out.println("POS BA SIZE " + ba_pos.size());
 		System.out.println("POS USHMM SIZE " + ushmm_pos.size());
 		System.out.println("POS ITS SIZE " + its_pos.size());
+		System.out.println("POS IfZ SIZE " + ifz_pos.size());
+		System.out.println("POS CEGESOMA SIZE " + cegesoma_pos.size());
 		annotated.put("niod", niod_pos);
 		annotated.put("wiener", wl_pos);
 		annotated.put("yadvashem", yv_pos);
@@ -67,6 +77,8 @@ public class POSannotateLernMaterial {
 		annotated.put("bundesarchiv", ba_pos);
 		annotated.put("ushmm", ushmm_pos);
 		annotated.put("its", its_pos);
+		annotated.put("cegesoma", cegesoma_pos);
+		annotated.put("ifz", ifz_pos);
 		
 		return annotated;
 

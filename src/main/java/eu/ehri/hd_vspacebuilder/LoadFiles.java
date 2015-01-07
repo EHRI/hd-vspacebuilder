@@ -16,7 +16,7 @@ public class LoadFiles {
 
 	public HashMap<String, List<String>> loadFiles4Model(String descriptionsFolder) {
 		File descriptions = new File(descriptionsFolder);
-		System.out.println("Loading files.");
+		System.out.println("Loading files...");
 		List<String> niod_lines = new ArrayList<String>();
 		List<String> wl_lines = new ArrayList<String>();
 		List<String> yv_lines = new ArrayList<String>();
@@ -24,6 +24,8 @@ public class LoadFiles {
 		List<String> ushmm_lines = new ArrayList<String>();
 		List<String> bundesarchiv_lines = new ArrayList<String>();
 		List<String> its_lines = new ArrayList<String>();
+		List<String> cegesoma_lines = new ArrayList<String>();
+		List<String> ifz_lines = new ArrayList<String>();
 		
 		Pattern textFile = Pattern.compile(".*txt");
 		List<String> fileList = new ArrayList<String>();
@@ -80,6 +82,12 @@ public class LoadFiles {
 			if (fileList.get(i).matches("its_.*")) {
 				its_lines.addAll(linesOfFile);
 			}
+			if (fileList.get(i).matches("cegesoma_.*")) {
+				cegesoma_lines.addAll(linesOfFile);
+			}
+			if (fileList.get(i).matches("ifz_.*")) {
+				ifz_lines.addAll(linesOfFile);
+			}
 
 		}
 
@@ -90,6 +98,8 @@ public class LoadFiles {
 		filesContent.put("bundesarchiv", bundesarchiv_lines);
 		filesContent.put("ushmm", ushmm_lines);
 		filesContent.put("its", its_lines);
+		filesContent.put("cegesoma", cegesoma_lines);
+		filesContent.put("ifz", ifz_lines);
 		
 		System.out.println("NIOD lines: " + niod_lines.size());
 		System.out.println("WL lines: " + wl_lines.size());
@@ -98,6 +108,8 @@ public class LoadFiles {
 		System.out.println("BA lines: "  + bundesarchiv_lines.size());
 		System.out.println("USHMM lines: "  + ushmm_lines.size());
 		System.out.println("ITS lines: "  + its_lines.size());
+		System.out.println("CEGESOMA lines: "  + cegesoma_lines.size());
+		System.out.println("IFZ lines: "  + ifz_lines.size());
 
 
 		return filesContent;

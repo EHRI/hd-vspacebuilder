@@ -45,7 +45,6 @@ public class RankTfIdf {
 		HashMap<String, Integer> lengths = new HashMap<String, Integer>();
 
 		for (String key : extractedFeats.keySet()) {
-			System.out.println("Building representation of: " + key);
 			int length = extractedFeats.get(key).size();
 			HashMap<String, Integer> featuresCount = new HashMap<String, Integer>();
 			for (int i = 0; i < extractedFeats.get(key).size(); i++) {
@@ -68,6 +67,7 @@ public class RankTfIdf {
 		HashMap<String, HashMap<String, Double>> termFrequencies = new HashMap<String, HashMap<String, Double>>();
 
 		for (String key : featureOccurrence.keySet()) {
+			System.out.println("KEY " + key);
 			HashMap<String, Double> frequenciesDocument = new HashMap<String, Double>();
 			// extract maximal frequency of a feature. It will be used for
 			// normalization of the term frequency

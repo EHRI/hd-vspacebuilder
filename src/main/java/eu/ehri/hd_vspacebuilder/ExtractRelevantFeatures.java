@@ -51,7 +51,9 @@ public class ExtractRelevantFeatures {
 		List<String> ba_feats = new ArrayList<String>();
 		List<String> ushmm_feats = new ArrayList<String>();
 		List<String> its_feats = new ArrayList<String>();
-
+		List<String> cegesoma_feats = new ArrayList<String>();
+		List<String> ifz_feats = new ArrayList<String>();
+		
 		for (String key : tagged.keySet()) {
 			 System.out.println("Extracting features from "+ key);
 			for (int i = 0; i < tagged.get(key).size(); i++) {
@@ -85,6 +87,12 @@ public class ExtractRelevantFeatures {
 								if (key.equals("its")) {
 									its_feats.add(feature);
 								}
+								if (key.equals("cegesoma")) {
+									cegesoma_feats.add(feature);
+								}
+								if (key.equals("ifz")) {
+									ifz_feats.add(feature);
+								}
 							}
 							// }
 						} else {
@@ -112,6 +120,12 @@ public class ExtractRelevantFeatures {
 								if (key.equals("its")) {
 									its_feats.add(feature);
 								}
+								if (key.equals("cegesoma")) {
+									cegesoma_feats.add(feature);
+								}
+								if (key.equals("ifz")) {
+									ifz_feats.add(feature);
+								}
 							}
 						}
 					}
@@ -119,21 +133,25 @@ public class ExtractRelevantFeatures {
 			}
 		}
 		// }
-		selected.put("niod", niod_feats);
-		selected.put("wiener", wl_feats);
+//		selected.put("niod", niod_feats);
+//		selected.put("wiener", wl_feats);
 		selected.put("yadvashem", yv_feats);
-		selected.put("jewishmuseumprag", jmp_feats);
-		selected.put("bundesarchiv", ba_feats);
-		selected.put("ushmm", ushmm_feats);
+//		selected.put("jewishmuseumprag", jmp_feats);
+//		selected.put("bundesarchiv", ba_feats);
+//		selected.put("ushmm", ushmm_feats);
 		selected.put("its", its_feats);
+		selected.put("cegesoma", cegesoma_feats);
+//		selected.put("ifz", ifz_feats);
 		
-		features.addAll(niod_feats);
-		features.addAll(wl_feats);
+//		features.addAll(niod_feats);
+//		features.addAll(wl_feats);
 		features.addAll(yv_feats);
-		features.addAll(jmp_feats);
-		features.addAll(ba_feats);
-		features.addAll(ushmm_feats);
+//		features.addAll(jmp_feats);
+//		features.addAll(ba_feats);
+//		features.addAll(ushmm_feats);
 		features.addAll(its_feats);
+		features.addAll(cegesoma_feats);
+//		features.addAll(ifz_feats);
 		
 	//	System.out.println("Features size begin " + features.size());
 		AuxiliaryMethods.removeDuplicates(features);
