@@ -13,7 +13,7 @@ import java.util.List;
 
 public class RankTfIdf {
 
-	//static GetProperties property = new GetProperties();
+	
 
 	public HashMap<String, HashMap<String, Double>> rankingTfIdf(
 			HashMap<String, List<String>> extractedFeats, String targetFolder)
